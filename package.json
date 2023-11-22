@@ -1,0 +1,26 @@
+{
+  "name": "@hexlet/code",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "gendiff.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "[![Actions Status](https://github.com/evaanov/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/evaanov/frontend-project-46/actions)",
+  "dependencies": {
+    "commander": "^11.1.0",
+    "fs": "^0.0.1-security",
+    "make": "^0.8.1",
+    "makefile": "^0.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evaanov/frontend-project-46.git"
+  },
+  "bugs": {
+    "url": "https://github.com/evaanov/frontend-project-46/issues"
+  },
+  "homepage": "https://github.com/evaanov/frontend-project-46#readme"
+}
