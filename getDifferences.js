@@ -1,8 +1,9 @@
-import fs from 'fs';
+import parser from './src/parser.js';
 
 export default function getDifferences(filepath1, filepath2) {
-  const contentOfFile1 = JSON.parse(fs.readFileSync(filepath1));
-  const contentOfFile2 = JSON.parse(fs.readFileSync(filepath2));
+  const contentOfFile1 = parser(filepath1);
+  const contentOfFile2 = parser(filepath2);
+
 
   let resultString = '';
 

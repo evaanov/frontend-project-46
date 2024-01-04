@@ -10,3 +10,7 @@ genDiff
 Сравнивание json файлов
 
 ![Alt text](image.png)
+
+Сравнивание yaml файлов
+
+![Alt text](image-1.png)
