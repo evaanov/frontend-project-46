@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { program } from 'commander';
-import getDifferences from './getDifferences.js';
+import getDifferences from './src/getDifferences.js';
 
 program
   .name('gendiff')

@@ -1,15 +1,13 @@
-import parser from './src/parser.js';
 import _ from 'lodash';
 
 
-function compare(contentOfFile1, contentOfFile2, iterator = 0){ 
+export default function compare(contentOfFile1, contentOfFile2, iterator = 0){ 
   let resultString = '';
   let i = iterator + 2;
 
   const keys1 = Object.keys(contentOfFile1);
   const keys2 = Object.keys(contentOfFile2);
   const keys = _.union(keys1, keys2)
-  console.log(keys1, keys2)
   
   keys.sort().map((key) => {
     if (key in contentOfFile1 && key in contentOfFile2) { 
@@ -47,12 +45,4 @@ function compare(contentOfFile1, contentOfFile2, iterator = 0){
   
 
   return `{\n${resultString}${'  '.repeat(i === 2 ? (i - 2) : (i - 1))}}`
-}
-
-export default function getDifferences(filepath1, filepath2) {
-  const contentOfFile1 = parser(filepath1);
-  const contentOfFile2 = parser(filepath2);
-
-
-  return  compare(contentOfFile1, contentOfFile2)
 }
