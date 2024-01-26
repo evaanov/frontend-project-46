@@ -2,38 +2,43 @@ import parser from './src/parser.js';
 import _ from 'lodash';
 
 
-function compare(contentOfFile1, contentOfFile2, iterator = 1){ 
+function compare(contentOfFile1, contentOfFile2, iterator = 0){ 
   let resultString = '';
-  let i = iterator + 1;
+  let i = iterator + 2;
 
-  const keys1 = Object.keys(contentOfFile1).flat(Infinity);
-  console.log(keys1)
-  const keys2 = Object.keys(contentOfFile2).flat(Infinity);
+  const keys1 = Object.keys(contentOfFile1);
+  const keys2 = Object.keys(contentOfFile2);
   const keys = _.union(keys1, keys2)
-  console.log(keys)
+  console.log(keys1, keys2)
   
-  keys.sort().map((key) => { 
-    if (contentOfFile1[key] instanceof Object) {
-      if (key in contentOfFile1 && key in contentOfFile2) { 
+  keys.sort().map((key) => {
+    if (key in contentOfFile1 && key in contentOfFile2) { 
+      if (contentOfFile1[key] instanceof Object && contentOfFile2[key] instanceof Object) { 
         resultString += `${'  '.repeat(i)}  ${key}: ${compare(contentOfFile1[key], contentOfFile2[key], i)}\n`
-      } else if (key in contentOfFile1 && !(key in contentOfFile2)) { 
+      } else if (contentOfFile1[key] instanceof Object && !(contentOfFile2[key] instanceof Object)) { 
         resultString += `${'  '.repeat(i)}- ${key}: ${compare(contentOfFile1[key], {}, i)}\n`
-      }
-      else if (!(key in contentOfFile1) && key in contentOfFile2) { 
-        resultString += `${'  '.repeat(i)}+ ${key}: ${compare({}, contentOfFile2[key], i)}\n`
-      } else if (JSON.stringify(contentOfFile1[key]) !== JSON.stringify(contentOfFile2[key])) {
-        resultString += `${'  '.repeat(i)}- ${key}: ${compare(contentOfFile1[key], contentOfFile2[key], i)}\n`
-        resultString += `${'  '.repeat(i)}+ ${key}: ${compare(contentOfFile1[key], contentOfFile2[key], i)}\n`
-      }
-    } else {
-      if (contentOfFile1[key] === contentOfFile2[key]) { 
-        resultString += `${'  '.repeat(i)}  ${key}: ${contentOfFile1[key]}\n`;
-      } else if (contentOfFile2[key] === undefined) { 
-        resultString += `${'  '.repeat(i)}- ${key}: ${contentOfFile1[key]}\n`;
-      } else if (contentOfFile1[key] === undefined) { 
         resultString += `${'  '.repeat(i)}+ ${key}: ${contentOfFile2[key]}\n`;
-      } else if (contentOfFile1[key] !== contentOfFile2[key]) {
+      } else if (!(contentOfFile1[key] instanceof Object) && contentOfFile2[key] instanceof Object) {
         resultString += `${'  '.repeat(i)}- ${key}: ${contentOfFile1[key]}\n`;
+        resultString += `${'  '.repeat(i)}+ ${key}: ${compare(contentOfFile2[key], {}, i)}\n`
+      } else if (!(contentOfFile1[key] instanceof Object) && !(contentOfFile2[key] instanceof Object)) { 
+        if (contentOfFile1[key] === contentOfFile2[key]) { 
+          resultString += `${'  '.repeat(i)}  ${key}: ${contentOfFile1[key]}\n`;
+        } else { 
+          resultString += `${'  '.repeat(i)}- ${key}: ${contentOfFile1[key]}\n`;
+          resultString += `${'  '.repeat(i)}+ ${key}: ${contentOfFile2[key]}\n`;
+        }
+      }
+    } else if (key in contentOfFile1 && !(key in contentOfFile2)) { 
+      if (contentOfFile1[key] instanceof Object) { 
+        resultString += `${'  '.repeat(i)}  ${key}: ${compare(contentOfFile1[key], {}, i)}\n`
+      } else {
+        resultString += `${'  '.repeat(i)}  ${key}: ${contentOfFile1[key]}\n`;
+      }
+    } else if (!(key in contentOfFile1) && key in contentOfFile2) { 
+      if (contentOfFile2[key] instanceof Object) { 
+        resultString += `${'  '.repeat(i)}+ ${key}: ${compare(contentOfFile2[key], {}, i)}\n`
+      } else { 
         resultString += `${'  '.repeat(i)}+ ${key}: ${contentOfFile2[key]}\n`;
       }
     }
@@ -41,7 +46,7 @@ function compare(contentOfFile1, contentOfFile2, iterator = 1){
 
   
 
-  return `{\n${resultString}${'  '.repeat(i )}}`
+  return `{\n${resultString}${'  '.repeat(i === 2 ? (i - 2) : (i - 1))}}`
 }
 
 export default function getDifferences(filepath1, filepath2) {
