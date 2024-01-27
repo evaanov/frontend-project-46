@@ -10,7 +10,7 @@ program
   .helpOption('-h, --help', 'output usage information')
   .arguments('<filepath1> <filepath2> ')
   .action((filepath1, filepath12) => {
-    const result = getDifferences(filepath1, filepath12)
+    const result = getDifferences(filepath1, filepath12, program.opts().format)
     console.log(result)
   })
 
