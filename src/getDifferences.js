@@ -5,7 +5,6 @@ import compareJson from './getDifferencesJson.js';
 
 
 export default function getDifferences(filepath1, filepath2, format = 'stylish') {
-  console.log(format)
   const contentOfFile1 = parser(filepath1);
   const contentOfFile2 = parser(filepath2);
 
