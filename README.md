@@ -9,8 +9,16 @@ genDiff
 
 Сравнивание json файлов
 
-![Alt text](image.png)
+![Alt text](image-2.png)
 
 Сравнивание yaml файлов
 
 ![Alt text](image-1.png)
+
+Сравнивание используя форматтер plain 
+
+![Alt text](image-3.png)
+
+Сравнивание используя форматтер json
+
+![Alt text](image-4.png)
