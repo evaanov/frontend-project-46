@@ -15,4 +15,4 @@ program
     console.log(result)
   })
 
-program.parse(process.argv);
+program.parse();
