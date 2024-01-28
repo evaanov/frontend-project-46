@@ -14,21 +14,21 @@ const stylish = readFile('stylish');
 
 test('stylish formatter', () => {
   const expectResultJSON = getDifferences('__fixtures__/file1.json', '__fixtures__/file2.json');
-  const expectResultYML = getDifferences('__fixtures__/file1.yml', '__fixtures__/file2.yml');
+  const expectResultYML = getDifferences('__fixtures__/file1.yaml', '__fixtures__/file2.yaml');
   expect(expectResultJSON).toEqual(stylish);
   expect(expectResultYML).toEqual(stylish);
 });
 
 test('plain formatter', () => {
   const expectResultJSON = getDifferences('__fixtures__/file1.json', '__fixtures__/file2.json', 'plain');
-  const expectResultYML = getDifferences('__fixtures__/file1.yml', '__fixtures__/file2.yml', 'plain');
+  const expectResultYML = getDifferences('__fixtures__/file1.yaml', '__fixtures__/file2.yaml', 'plain');
   expect(expectResultJSON).toEqual(plain);
   expect(expectResultYML).toEqual(plain);
 });
 
 test('json formatter', () => {
   const expectResultJSON = getDifferences('__fixtures__/file1.json', '__fixtures__/file2.json', 'json');
-  const expectResultYML = getDifferences('__fixtures__/file1.yml', '__fixtures__/file2.yml', 'json');
+  const expectResultYML = getDifferences('__fixtures__/file1.yaml', '__fixtures__/file2.yaml', 'json');
   expect(expectResultJSON).toEqual(json);
   expect(expectResultYML).toEqual(json);
 });
