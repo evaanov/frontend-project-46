@@ -1,7 +1,7 @@
 import parser from './parser.js';
-import compare from './stylish.js';
-import comparePlain from './getDifferencesPlain.js';
-import compareJson from './getDifferencesJson.js';
+import compare from './formatters/stylish.js';
+import comparePlain from './formatters/getDifferencesPlain.js';
+import compareJson from './formatters/getDifferencesJson.js';
 
 
 export default function getDifferences(filepath1, filepath2, format = 'stylish') {

@@ -1,24 +1,34 @@
-import { test, expect } from '@jest/globals';
-import path, { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import parser from '../src/parser.js';
-import getDifferences from '../src/getDifferences.js';
+import { expect, test } from '@jest/globals';
+import fs from 'fs';
+import path from 'path';
+import getDifferences from '../src/getDifferences';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
-const getFixturePath = (filename) => { path.join(__dirname, '..', '__fixtures__', filename); };
+const getFixturePath = (filename) => path.join('..', '__fixtures__', filename);
 
-test('gendiff file1.json and file2.json', () => {
-  const contentOfFile1 = parser(getFixturePath('file1.json'));
-  const contentOfFile2 = parser(getFixturePath('file2.json'));
-  const expectedDifferences = getDifferences(contentOfFile1, contentOfFile2);
-  expect(('file1.json', 'file2.json')).toEqual(expectedDifferences);
+const readFile = (filename) => fs.readFileSync(getFixturePath(`${filename}.txt`), 'utf-8');
+
+const json = readFile('json');
+const plain = readFile('plain');
+const stylish = readFile('stylish');
+
+test('stylish formatter', () => {
+  const expectResultJSON = getDifferences('__fixtures__/file1.json', '__fixtures__/file2.json');
+  const expectResultYML = getDifferences('__fixtures__/file1.yml', '__fixtures__/file2.yml');
+  expect(expectResultJSON).toEqual(stylish);
+  expect(expectResultYML).toEqual(stylish);
 });
 
-test('gendiff file1.yaml and file2.yaml', () => {
-  const contentOfFile1 = parser('file1.yaml');
-  const contentOfFile2 = parser('file2.yaml');
-  const expectedDifferences = getDifferences(contentOfFile1, contentOfFile2);
-  expect(getDifferences('file1.json', 'file2.json')).toEqual(expectedDifferences);
+test('plain formatter', () => {
+  const expectResultJSON = getDifferences('__fixtures__/file1.json', '__fixtures__/file2.json', 'plain');
+  const expectResultYML = getDifferences('__fixtures__/file1.yml', '__fixtures__/file2.yml', 'plain');
+  expect(expectResultJSON).toEqual(plain);
+  expect(expectResultYML).toEqual(plain);
+});
+
+test('json formatter', () => {
+  const expectResultJSON = getDifferences('__fixtures__/file1.json', '__fixtures__/file2.json', 'json');
+  const expectResultYML = getDifferences('__fixtures__/file1.yml', '__fixtures__/file2.yml', 'json');
+  expect(expectResultJSON).toEqual(json);
+  expect(expectResultYML).toEqual(json);
 });

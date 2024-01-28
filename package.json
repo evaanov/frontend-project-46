@@ -4,18 +4,18 @@
   "version": "1.0.0",
   "main": "gendiff.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
   "description": "[![Actions Status](https://github.com/evaanov/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/evaanov/frontend-project-46/actions)",
   "dependencies": {
+    "@jest/globals": "^29.7.0",
     "commander": "^11.1.0",
     "fs": "^0.0.1-security",
-    "jest": "^29.7.0",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
-    "make": "^0.8.1",
+    "make": "^0.0.0",
     "makefile": "^0.0.2",
     "path": "^0.12.7",
     "url": "^0.11.3"
@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/evaanov/frontend-project-46#readme",
   "devDependencies": {
-    "eslint": "^8.56.0"
+    "eslint": "^8.56.0",
+    "jest": "^29.7.0"
   }
 }

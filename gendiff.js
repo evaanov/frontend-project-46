@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-import { program } from 'commander';
+import { program } from 'commander'
 import getDifferences from './src/getDifferences.js';
+
 
 program
   .name('gendiff')
@@ -14,4 +15,4 @@ program
     console.log(result)
   })
 
-program.parse();
+program.parse(process.argv);
