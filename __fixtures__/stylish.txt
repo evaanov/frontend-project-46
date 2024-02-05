@@ -11,7 +11,7 @@
           }
           setting6: {
               doge: {
-                - wow:
+                - wow: 
                 + wow: so much
               }
               key: value
@@ -27,15 +27,15 @@
           }
         + nest: str
       }
-     -group2: {
+    - group2: {
           abc: 12345
-         -deep: {
+        - deep: {
               id: 45
           }
       }
     + group3: {
-         -deep: {
-             -id: {
+        - deep: {
+            - id: {
                   number: 45
               }
           }

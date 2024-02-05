@@ -27,7 +27,7 @@ export default function comparePlain(contentOfFile1, contentOfFile2, parentLine 
     } else if (key in contentOfFile1 && !(key in contentOfFile2)) {
       resultString += `Property '${currentParentLine}' was removed\n`;
     } else if (!(key in contentOfFile1) && key in contentOfFile2) {
-      const valueString = contentOfFile2[key] instanceof Object ? '[complex value]' : `${contentOfFile2[key]}`;
+      const valueString = contentOfFile2[key] instanceof Object ? `[complex value]`: `'${contentOfFile2[key]}'`;
       resultString += `Property '${currentParentLine}' was added with value: ${valueString}\n`;
     }
   });
